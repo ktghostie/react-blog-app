@@ -15,6 +15,9 @@ function Navbar() {
             <button>
                 <Link to="/about">About</Link>
             </button>
+            <button>
+                <Link to="/login">Login</Link>
+            </button>
         </nav>
     )
 }

@@ -11,6 +11,8 @@ import ContactsPage from "./contact/ContactsPage";
 import { Route, Routes } from "react-router";
 import PostList from "./postList/PostList";
 import HomePage from "./components/homepage/HomePage";
+import Login from "./components/login/Login";
+import { AuthProvider } from "./components/authWrapper/AuthProvider";
 
 function App() {
     // const [comments, setComments] = useState([
@@ -24,6 +26,7 @@ function App() {
     
     return (
         <div className="app">
+            <AuthProvider>
             <header>
                 <Header></Header>
             </header>
@@ -33,6 +36,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<HomePage/>}/>
+                    <Route path="/login" element={<Login/>}/>
                     <Route path="/contact" element={<ContactsPage/>}/>
                     <Route path="/posts" element={<PostList/>}/>
                     <Route path="/posts/:post_id" element={<IndividualBlogPost/>}/>
@@ -41,7 +45,7 @@ function App() {
             <footer>
                 <Footer></Footer>
             </footer>
-            
+            </AuthProvider>
         </div>
     );
 }
