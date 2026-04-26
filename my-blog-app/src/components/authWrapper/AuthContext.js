@@ -7,6 +7,6 @@ export const useUsername = () => {
     return user ? user.username : null;
 }
 
-export const useAuth = () => useCpntext(AuthContext);
+export const useAuth = () => useContext(AuthContext);
 
 export default AuthContext;
