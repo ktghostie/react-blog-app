@@ -16,9 +16,6 @@ function Navbar() {
                 <Link to="/contact">Contact</Link>
             </button>
             <button>
-                <Link to="/about">About</Link>
-            </button>
-            <button>
                 {/*<Link to="/login">Login</Link>*/}
                 {username ? <p onClick={logout}>Hi {username}, Logout</p> : <Link to="/login">Login</Link>}
             </button>

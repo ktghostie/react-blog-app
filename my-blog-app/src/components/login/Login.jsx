@@ -13,8 +13,8 @@ function Login() {
     login(userData.username);
   }
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="blog-container">
+      <form onSubmit={onSubmit} className="login-row">
         <input 
           placeholder="Username"
           value={userData.username} 
@@ -28,6 +28,7 @@ function Login() {
         />
       <button type="submit">Submit</button>
       </form>
+      <p>You must login before you may interact with any of the site's content.</p>
     </div>
   )
 }

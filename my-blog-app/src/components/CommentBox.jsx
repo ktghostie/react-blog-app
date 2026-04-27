@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import axios from "axios";
 import { useAuth } from "./authWrapper/AuthContext";
 
@@ -29,9 +29,11 @@ function CommentBox({ addComment }) {
         }
       );
 
-      addComment(res.data);
-
-      setName("");
+      addComment({
+        id: res.data.id || Date.now(),
+        name: user.username,
+        body: text,
+      });
       setText("");
     } catch (error) {
       console.error("Error posting comment:", error);
@@ -42,8 +44,8 @@ function CommentBox({ addComment }) {
   };
 
   if (!user) {
-  return <Navigate to="/login" />;
-}
+    return <Navigate to="/login" />;
+  }
   return (
     <form onSubmit={handleSubmit} className="comment-box">
       <textarea
