@@ -10,6 +10,10 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
     //console.log(userData);
+    if (!userData.username || !userData.password) {
+      alert("Fill in all fields");
+      return;
+    }
     login(userData.username);
   }
   return (

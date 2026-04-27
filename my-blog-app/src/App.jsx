@@ -38,7 +38,9 @@ function App() {
                     <Route path="/" element={<HomePage/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/contact" element={<ContactsPage/>}/>
-                    <Route path="/posts" element={<PostList/>}/>
+                    <Route 
+                        path="/posts" element={<PostList/>}
+                    />
                     <Route path="/posts/:post_id" element={<IndividualBlogPost/>}/>
                 </Routes>
             </main>
