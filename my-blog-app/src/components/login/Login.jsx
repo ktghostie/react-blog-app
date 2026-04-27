@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useAuth } from '../authWrapper/AuthContext';
 
 function Login() {
+  const {login} = useAuth();
   const [userData, setUserData] = useState({
     username: '',
     password: '',
   });
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    //console.log(userData);
+    login(userData.username);
   }
   return (
     <div>

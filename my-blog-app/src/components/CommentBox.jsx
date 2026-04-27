@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { useAuth } from "./authWrapper/AuthContext";
 
 function CommentBox({ addComment }) {
   const { post_id } = useParams();
-
-  const [name, setName] = useState("");
+  const { user } = useAuth();
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+  //I use loading here
   
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
 
-    if (!name || !text) {
-      alert("Please fill in all fields");
+    if (!text) {
+      alert("Do not leave blank comments.");
       return;
     }
 
@@ -23,7 +24,7 @@ function CommentBox({ addComment }) {
       const res = await axios.post(
         `https://jsonplaceholder.typicode.com/posts/${post_id}/comments`,
         {
-          name: name,
+          name: user.username,
           body: text,
         }
       );
@@ -40,15 +41,11 @@ function CommentBox({ addComment }) {
     }
   };
 
+  if (!user) {
+  return <Navigate to="/login" />;
+}
   return (
     <form onSubmit={handleSubmit} className="comment-box">
-      <input
-        type="text"
-        placeholder="Your name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-
       <textarea
         placeholder="Your comment"
         value={text}
